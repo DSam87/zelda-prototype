@@ -5,31 +5,45 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D theRB;
-    public string isMoving;
+    public Animator theAnim;
+    public float playerSpeed;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        theRB = GetComponent<Rigidbody2D>();
+        theAnim = GetComponent<Animator>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetAxisRaw("Horizontal") != 0 && isMoving == "reset")
+
+        if(Input.GetAxisRaw("Horizontal") != 0)
         {
-            isMoving = "Horizontal";
-            theRB.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), 0f);
+            theAnim.SetFloat("HorizontalMove", Input.GetAxisRaw("Horizontal"));
+            theAnim.SetFloat("VerticalMove", 0f);     
+            theRB.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), 0f) * playerSpeed;
         }
-        else if(Input.GetAxisRaw("Vertical") != 0 && (isMoving == "reset" || isMoving == "Vertical"))
+
+        if(Input.GetAxisRaw("Vertical") != 0)
         {
-            isMoving = "Vertical";
-            theRB.velocity = new Vector2(0f, Input.GetAxisRaw("Vertical"));
+            theAnim.SetFloat("VerticalMove", Input.GetAxisRaw("Vertical"));
+            theAnim.SetFloat("HorizontalMove", 0f);               
+            theRB.velocity = new Vector2(0f, Input.GetAxisRaw("Vertical")) * playerSpeed;            
         }
-        else
+
+        if(Input.GetAxisRaw("Vertical") != 0 && Input.GetAxisRaw("Horizontal") != 0)
         {
-            theRB.velocity = new Vector2(0f, 0f);
-            isMoving = "reset";
+            theRB.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * playerSpeed * .7f;   
         }
+
+        if(Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
+        {
+            theRB.velocity = new Vector2(0, 0);  
+        }
+
     }
 }

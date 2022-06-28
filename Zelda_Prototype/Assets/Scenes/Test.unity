@@ -262,6 +262,8 @@ MonoBehaviour:
   theRB: {fileID: 0}
   theAnim: {fileID: 0}
   playerSpeed: 3.5
+  movementCountDown: 0
+  countDownDuration: 0.05
 --- !u!95 &336335573
 Animator:
   serializedVersion: 3

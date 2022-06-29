@@ -11,13 +11,28 @@ public class PlayerController : MonoBehaviour
     public float movementCountDown;
     public float countDownDuration;
 
+    public static PlayerController instance;
+
+    public string areaTransitionName;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        theRB = GetComponent<Rigidbody2D>();
-        theAnim = GetComponent<Animator>();
-        movementCountDown = 0;
+        DontDestroyOnLoad(gameObject);
+
+        if(instance == null)
+        {
+            instance = this;
+            theRB = GetComponent<Rigidbody2D>();
+            theAnim = GetComponent<Animator>();
+            movementCountDown = 0;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
     }
 
     // Update is called once per frame

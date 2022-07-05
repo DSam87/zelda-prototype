@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
 
     public static PlayerController instance;
 
-    public string areaTransitionName;
+    public string areaToTransitionName;
 
 
     // Start is called before the first frame update

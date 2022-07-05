@@ -70,4 +70,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ac0135d47e1f594d9dbc0531bddacae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  areaToLoad: Test2
+  areaToLoad: Countryside2
+  areaToTransitionName: 
